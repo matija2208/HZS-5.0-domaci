@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div style="height: 500px; width: 50%;">
+        <div id="map" style="height: 100%;"></div>
+    </div>
+
+    <form id="forma">
+        <input type="radio" id="bandRadio" name="pinModeType">
+        <label for="bandRadio">Bend</label>
+
+        <input type="radio" id="eventRadio" name="pinModeType">
+        <label for="eventRadio">Dogadjaj</label>
+
+        <input type="radio" id="collabRadio" name="pinModeType">
+        <label for="collabRadio">Saradnja</label>
+
+        <input type="radio" id="saleRadio" name="pinModeType">
+        <label for="saleRadio">Prodaja</label>
+    </form>
+
+    <script>
+        function initMap() {
+            const srbija = { lat: 44.0165, lng: 21.0059 };
+                    const map = new google.maps.Map(
+                    document.getElementById("map"),{
+                        zoom: 7,
+                        center: srbija,
+                        styles: 
+                        [
+                        {
+                            "featureType": "poi.business",
+                            "elementType": "labels.text",
+                            "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.business",
+                            "elementType": "labels.text.fill",
+                            "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.business",
+                            "elementType": "labels.text.stroke",
+                            "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                            ]
+                        }
+                        ]
+                    }
+                    );
+
+                    map.addListener('click', function(e) {
+                        placeMarker(e.latLng, map);
+                    });
+
+                    function placeMarker(position, map) { //click to put marker
+                        switch(document.querySelector('input[name="pinModeType"]:checked').id){
+                                case 'bandRadio':
+                                    var marker = new google.maps.Marker({
+                                    position: position,
+                                    map: map,
+                                    icon: 'bendMarker.png'
+                                    });
+                                break;
+
+                                case 'eventRadio':
+                                    var marker = new google.maps.Marker({
+                                    position: position,
+                                    map: map,
+                                    icon: 'dogadjajMarker.png'
+                                    });
+                                break;
+                                
+                                case 'collabRadio':
+                                    var marker = new google.maps.Marker({
+                                    position: position,
+                                    map: map,
+                                    icon: 'saradnjaMarker.png'
+                                    });
+                                break;
+
+                                case 'saleRadio':
+                                    var marker = new google.maps.Marker({
+                                    position: position,
+                                    map: map,
+                                    icon: 'prodajaMarker.png'
+                                    });
+                                break;
+                        }
+                    }
+        }
+
+        window.initMap = initMap;
+    </script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCThnoRS0Gt0UvbzjUWfPg-rR374Y5DwfU&callback=initMap&libraries=&v=weekly" defer></script>
+</body>
+</html>
