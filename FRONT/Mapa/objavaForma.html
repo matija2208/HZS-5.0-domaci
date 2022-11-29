@@ -5,9 +5,67 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        .hidden{
+            display: none;
+        }
+    </style>
+
 </head>
 <body onload="formLoad();">
 
+    <section id="bendP" class="hidden">
+        <form id="objavaForma">
+            <label for="imeBenda">Ime benda:</label>
+            <input type="text" id="imeBenda">
+            <br>
+
+            <label for="zanrBenda">Zanr benda:</label>
+            <input type="text" id="zanrBenda">
+            <br>
+
+            <label for="clanoviBenda">Neki clanovi:</label>
+            <input type="text" id="clanoviBenda">
+            <br>
+
+            <label for="opisBenda">Opis benda:</label> 
+            <textarea id="opisBenda">Opisite vas bend ovde</textarea>
+            <br>
+
+            <label for="kontaktBend">Kontakt:</label> 
+            <input type="text" id="kontaktBend">
+            <br>
+        </form>
+    </section>
+
+    <section id="dogP" class="hidden">
+        <form id="objavaForma">
+            <label for="imeDog">Ime dogadjaja:</label>
+            <input type="text" id="imeDog">
+            <br>
+
+            <label for="opisDog">Opis dogadjaja:</label> 
+            <textarea id="opisDog">Opisite vas dogadjaj ovde</textarea>
+            <br>
+
+            <label for="datetimeDog">Vreme, datum dogadjaja:</label> 
+            <input type="datetime-local" id="datetimeDog">
+            <br>
+
+            <label for="clanoviDog">Neki clanovi:</label>
+            <input type="text" id="clanoviDog">
+            <br>
+
+            <label for="kontaktDog">Kontakt:</label> 
+            <input type="text" id="kontaktDog">
+            <br>
+
+            <label for="cenaDog">Cena:</label> 
+            <input type="number" id="cenaDog">
+            <br>
+        </form>
+    </section>
 
     <script src="mapaJS.js"></script>
 </body>
