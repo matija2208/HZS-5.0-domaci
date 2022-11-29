@@ -14,9 +14,10 @@ const UserStruct = new mg.Schema({
     username:{
         type:String,
         trim:true,
-        require:true
+        require:true,
+        unique:true
     },
-    pasword:{
+    password:{
         type:String,
         trim:true,
         require:true
@@ -24,7 +25,8 @@ const UserStruct = new mg.Schema({
     mail:{
         type:String,
         trim:true,
-        require:true
+        require:true,
+        unique:true
     }
 });
 

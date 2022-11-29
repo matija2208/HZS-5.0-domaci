@@ -1,40 +1,217 @@
 const user = require("../TEMPLATES/user");
+const enigma = require("../BAZA/enigma");
 
-function get(req, res)
+async function get(req, res)
 {
+    try{
+        let users = await user.find();
 
+        for(let i =0; i<users.length;i++)
+        {
+            users[i]-=password;
+        }
+
+        res.json({
+            uspesnost:true,
+            users:users
+        });
+    }
+    catch(err){
+        res.json({
+            uspesnost:false,
+            poruka:err.message
+        });
+    }
+    
 }
 
-function getOne(req, res)
+async function getOne(req, res)
 {
+    try{
+        let USER = await user.findById(enigma(req.params.id));
 
+        USER-=password;
+
+        res.json({
+            uspesnost:true,
+            user:USER
+        });
+    }
+    catch(err){
+        res.json({
+            uspesnost:false,
+            poruka:err.message
+        });
+    }
 }
 
-function post(req, res)
+async function login(req,res)
 {
+    try{
+        const users= await user.find();
+        const pass = enigma(req.body.password);
+        let x = false;
 
+        users.forEach(function(e){
+            if((req.body.mail===e.mail || req.body.mail === e.username) && pass ===e.password)
+            {
+                x=true;
+                res.json({
+                    uspesnost:true,
+                    id:enigma(e._id)
+                });
+                
+            }
+        });
+
+        if(!x)
+        {
+            res.json({
+                uspesnost:false
+            });
+        }
+    }
+    catch(err){
+        res.json({
+            uspesnost:false,
+            poruka:err.message
+        });
+    }
 }
 
-function del(req, res)
+async function post(req, res)
 {
+    try{
+        const newUser = new user(
+            {
+                ime:req.body.ime,
+                prezime:req.body.prezime,
+                username:req.body.username,
+                password:enigma(req.body.password),
+                mail:req.body.mail
+            }
+        );
 
+        const savedUser = await newUser.save();
+
+        res.json({
+            uspesnost:true,
+            id:enigma(savedUser._id)
+        });
+    }
+    catch(err){
+        res.json({
+            uspesnost:false,
+            poruka:err.message
+        });
+    }
 }
 
-function delOne(req, res)
+async function del(req, res)
 {
+    try{
+        let users = await user.find();
 
+        for(let i =0; i<users.length;i++)
+        {
+            await users[i].delete();
+        }
+
+        res.json({
+            uspesnost:true,
+        });
+    }
+    catch(err){
+        res.json({
+            uspesnost:false,
+            poruka:err.message
+        });
+    }
 }
 
-function put(req, res)
+async function delOne(req, res)
 {
+    try{
+        let USER = await user.findById(enigma(req.params.id));
 
+        const deletedUser = await USER.delete();
+
+        res.json({
+            uspesnost:true,
+            user:deletedUser
+        });
+    }
+    catch(err){
+        res.json({
+            uspesnost:false,
+            poruka:err.message
+        });
+    }
+}
+
+async function put(req, res)
+{
+    try{
+        let newUser = await(user.findById(enigma(req.params.id)))
+            
+        newUser.ime=req.body.ime;
+        newUser.prezime=req.body.prezime;
+        newUser.username=req.body.username;
+        newUser.mail=req.body.mail;
+
+        await newUser.save();
+
+        res.json({
+            uspesnost:true,
+        });
+    }
+    catch(err){
+        res.json({
+            uspesnost:false,
+            poruka:err.message
+        });
+    }
+}
+
+async function updatePassword(req,res)
+{
+    const id = enigma(req.params.id);
+    const newPass = req.body.noviPassword;
+    const oldPass = req.body.stariPassword;
+
+    try{
+        let USER = await user.findById(id);
+
+        if(oldPass === enigma(USER.password))
+        {
+            USER.password=enigma(newPass);
+            res.json({
+                uspesnost:true
+            });
+        }
+        else
+        {
+            res.json({
+                uspesnost:false,
+                poruka:"pogresna stara sifra"
+            });
+        }
+    }
+    catch(err){
+        res.json({
+            uspesnost:false,
+            poruka:err.message
+        });
+    }
 }
 
 module.exports = new Object({
     "get":get,
     "getOne":getOne,
+    "login":login,
     "post":post,
     "del":del,
     "delOne":delOne,
-    "put":put
+    "put":put,
+    "updatePassword":updatePassword
 });

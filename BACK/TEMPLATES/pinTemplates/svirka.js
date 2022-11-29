@@ -6,11 +6,6 @@ const kontaktStruct = new mg.Schema({
         trim:true,
         require:true
     },
-    adresa:{
-        type:String,
-        trim:true,
-        require:true
-    },
     mail:{
         type:String,
         trim:true,

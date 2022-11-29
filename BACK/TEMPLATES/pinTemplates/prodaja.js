@@ -18,7 +18,7 @@ const kontaktStruct = new mg.Schema({
     },
 });
 
-const svirkaStruct = new mg.Schema({
+const prodajaStruct = new mg.Schema({
     naziv:{
         type:String,
         trim:true,
@@ -50,4 +50,4 @@ const svirkaStruct = new mg.Schema({
     }
 });
 
-module.exports = mg.model("svirka", svirkaStruct);
+module.exports = mg.model("prodaja", prodajaStruct);

@@ -4,17 +4,16 @@ background: linear-gradient(153deg, rgba(128,29,255,1) 42%, rgba(56,136,255,1) 1
 color: white;
 }
 .reg-box{
-  background: rgb(128,29,255);
-  background: linear-gradient(153deg, rgba(128,29,255,1) 42%, rgba(56,136,255,1) 100%);
+  
 border: 12px dashed white;
-border-radius: 30px;
- text-align: center;
+border-radius: 50px;
  width: 60%;
  margin-left: auto;
  margin-right: auto;
- margin-top: 100px;
+ margin-top: 46px;
  margin-bottom: 100px;
  text-align: center;
+ padding:5px;
 } 
 .reg-box2{
   background-color: white;
