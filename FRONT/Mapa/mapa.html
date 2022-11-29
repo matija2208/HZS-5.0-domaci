@@ -24,6 +24,9 @@
 
         <input type="radio" id="saleRadio" name="pinModeType">
         <label for="saleRadio">Prodaja</label>
+
+        <input type="button" id="submitButon" onclick="sendForm()">
+
     </form>
 
     <script>
@@ -70,10 +73,33 @@
                         placeMarker(e.latLng, map);
                     });
 
+                    var marker = new google.maps.Marker({
+                        map: map
+                    });
                     function placeMarker(position, map) { //click to put marker
-                        switch(document.querySelector('input[name="pinModeType"]:checked').id){
+                        if (marker) { //if marker exists, set the position and icon        
+                            switch(document.querySelector('input[name="pinModeType"]:checked').id){
                                 case 'bandRadio':
-                                    var marker = new google.maps.Marker({
+                                    marker.setIcon('bendMarker.png');
+                                break;
+                                case 'eventRadio':
+                                    marker.setIcon('dogadjajMarker.png');
+                                break;
+                                case 'collabRadio':
+                                    marker.setIcon('saradnjaMarker.png');
+                                break;
+                                case 'saleRadio':
+                                    marker.setIcon('prodajaMarker.png');
+                                break;
+                                default:
+                                    marker.setIcon('bendMarker.png');
+                                break;
+                            }
+                            marker.setPosition(position);
+                        } else { //if marker doesnt exist, make one with the appropriate data
+                            switch(document.querySelector('input[name="pinModeType"]:checked').id){
+                                case 'bandRadio':
+                                    marker = ({
                                     position: position,
                                     map: map,
                                     icon: 'bendMarker.png'
@@ -81,7 +107,7 @@
                                 break;
 
                                 case 'eventRadio':
-                                    var marker = new google.maps.Marker({
+                                    marker = ({
                                     position: position,
                                     map: map,
                                     icon: 'dogadjajMarker.png'
@@ -89,7 +115,7 @@
                                 break;
                                 
                                 case 'collabRadio':
-                                    var marker = new google.maps.Marker({
+                                    marker = ({
                                     position: position,
                                     map: map,
                                     icon: 'saradnjaMarker.png'
@@ -97,18 +123,22 @@
                                 break;
 
                                 case 'saleRadio':
-                                    var marker = new google.maps.Marker({
+                                    marker = ({
                                     position: position,
                                     map: map,
                                     icon: 'prodajaMarker.png'
                                     });
-                                break;
-                        }
+                                break;  
+                        }      
                     }
+
+                    window.history.replaceState(null, null, "?" + marker.position.x);
+                }
         }
 
         window.initMap = initMap;
     </script>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCThnoRS0Gt0UvbzjUWfPg-rR374Y5DwfU&callback=initMap&libraries=&v=weekly" defer></script>
+   <script src="mapaJS.js"></script>
 </body>
 </html>
