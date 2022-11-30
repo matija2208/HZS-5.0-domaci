@@ -18,6 +18,7 @@ const komentarStruct = new mg.Schema({
     },
     korisnik:{
         type: mg.Schema.Types.ObjectId,
+        strictPopulate:false,
         ref: "user"
     }
 });

@@ -9,7 +9,7 @@ const baza=require("./BAZA/baza");
 const user = require("./FUNCTIONS/user");
 const pin = require("./FUNCTIONS/pin");
 const music = require("./FUNCTIONS/music");
-const komentar = require("./FUNCTIONS/komentar");
+//const komentar = require("./FUNCTIONS/komentar");
 
 app.use(ex.json());
 app.use(cors());
@@ -21,9 +21,6 @@ app.listen(PORT, function(){
 })
 
 baza();
-
-app.get("/api/MUSIC/:name",music.get);
-
 
 app.get("/api/users",user.get);
 
@@ -55,8 +52,16 @@ app.delete("/api/pin/:id", pin.delOne);
 app.put("/api/pin/:id", pin.put);
 
 
-app.post("/api/komentar",komentar.post);
+app.get("/api/music/:name", music.getSong);
 
-app.get("/api/komentar",komentar.get);
+app.get("/api/music", music.getList);
 
-app.delete("/api/komentar", komentar.del);
+app.post("/api/music/", music.post);
+
+app.delete("/api/music/:id", music.delOne);
+
+// app.post("/api/komentar",komentar.post);
+
+// app.get("/api/komentar",komentar.get);
+
+// app.delete("/api/komentar", komentar.del);

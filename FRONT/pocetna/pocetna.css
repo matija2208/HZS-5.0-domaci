@@ -117,8 +117,62 @@ body{
   z-index: 0;
   margin-bottom: 10px;
 }
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+#c {
+  width: 100%;  /* let our container decide our size */
+  height: 100%;
+  display: block;
+}
+#container {
+  position: relative;  /* makes this the origin of its children */
+  width: 60vw;
+  height: 80vh;
+  overflow: hidden;
+  margin: auto;
+}
+#labels {
+  position: absolute;  /* let us position ourself inside the container */
+  z-index: 0;          /* make a new stacking context so children don't sort with rest of page */
+  left: 0;             /* make our position the top left of the container */
+  top: 0;
+  color: white;
+}
+#labels>div {
+  position: absolute;  /* let us position them inside the container */
+  left: 0;             /* make their default position the top left of the container */
+  top: 0;
+  cursor: pointer;     /* change the cursor to a hand when over us */
+  font-size: small;
+  user-select: none;   /* don't let the text get selected */
+  pointer-events: none;  /* make us invisible to the pointer */
+  text-shadow:         /* create a black outline */
+  -1px -1px 0 rgb(0, 0, 0),
+  0   -1px 0 #000,
+  1px -1px 0 #000,
+  1px  0   0 #000,
+  1px  1px 0 rgb(0, 0, 0),
+  0    1px 0 rgb(0, 0, 0),
+  -1px  1px 0 #000,
+  -1px  0   0 #000;
+}
+.naziv{
+  color: yellow;
+}
+.naziv:hover {
+  cursor: pointer;
+  color: red !important;
+}
 
 /* -----------komentari----------- */
+.SveZaNaturizam:hover{
+  color:#575AFF
+}
+.uputstvo{
+  padding-bottom: 2vh;
+}
 .div-pesme{
   width: 50%;
 }
@@ -132,16 +186,16 @@ body{
   border-bottom-right-radius: 70px;
   border-top-left-radius: 70px;
   padding-top: 10px;
-
+  /* min-height: 60vh; */
   color: white;
   text-align: center;
   font-size: 20px;
 }
 
-.pesma1{
-  text-align: left;
+.pesma{
   padding: 5px;
-padding-top:15px;
+  margin-bottom: 1vh;
+/* padding-top:15px; */
 }
 .pesma2{
   text-align: right;
@@ -152,7 +206,7 @@ padding-top:15px;
 /* -------------planeta------- */
 .div-planeta{
   width: 50%;
-  background-color: rgb(0, 106, 255);
+  /* background-color: rgb(0, 106, 255); */
 }
 
 @media(max-width:1100px){
@@ -171,6 +225,10 @@ padding-top:15px;
  }
  .box-pesme{
 margin: 0;
+ }
+ #container{
+  margin-left: 0;
+  width: 80vw;
  }
 }
 /* -------------------------------------------Onama-------------------------------------------------------- */

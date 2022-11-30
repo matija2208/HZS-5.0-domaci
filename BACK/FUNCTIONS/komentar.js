@@ -34,7 +34,7 @@ async function post(req,res)
 async function get(req,res)
 {
     try{
-        const komentari = await komentar.find();
+        const komentari = await komentar.find().populate("korisnik");
         res.json({
             uspesnost:true,
             komentari:komentari
@@ -53,7 +53,6 @@ async function del(req,res)
 {
     try{
         let users=await user.find();
-        console.log(users);
         for(let i = 0;i<users.length;i++)
         {
             users[i].komentari=[];
