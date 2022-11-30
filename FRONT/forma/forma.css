@@ -3,10 +3,8 @@ body{
     background: linear-gradient(153deg, rgba(128,29,255,1) 42%, rgba(56,136,255,1) 100%);
     color: black;
     overflow: overlay;
-    
     }
     .reg-box{
-      
     border: 12px dashed white;
     border-radius: 50px;
      width: 60%;
@@ -28,6 +26,14 @@ body{
         font-size: 30px;
         color: rgb(128,29,255) ;
     }
+    .linija{
+      width: 80%;
+      height: 2px;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgb(128,29,255);
+      background: linear-gradient(153deg, rgba(128,29,255,1) 15%, rgba(56,136,255,1) 100%);
+    }
     
     .div-biranje{
         margin-left: 10%;
@@ -47,15 +53,17 @@ body{
       border:1px solid rgba(128,29,255,1) ;
     }
     
-    .dugme{
+    .dugmeObjavi{
       border-radius: 10px;
       padding:5px ;
+      padding-left:20px ;
+      padding-right:20px ;
       margin-top: 20px;
       border:1.5px solid rgba(128,29,255,1) ;
       color:rgba(128,29,255,1) ;
       font-size: 20px;
     }
-    .dugme:hover{
+    .dugmeObjavi:hover{
       color:  rgba(56,136,255,1);
       border:1.5px solid rgba(56,136,255,1);
     }
@@ -74,7 +82,7 @@ body{
       color:  rgba(56,136,255,1);
     }
     
-    
+  /* -------------------------------------skrol---------------------------------------------------   */
     body::-webkit-scrollbar {
       width: 13px;         
       background-color: transparent;    
@@ -91,6 +99,18 @@ body{
       border: 5px solid transparent; 
       border-right: 6px solid transparent; 
     } 
+/* -------------------------------------------------------------------------------------------------- */
+
+
+
+
+    @media(max-width:900px){
+    .reg-box{
+      width: 90%;
+      border: 8px dashed white;
+    }
+    }
+    
     
     
     
