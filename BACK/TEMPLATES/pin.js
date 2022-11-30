@@ -5,9 +5,14 @@ const svirka = require("./pinTemplates/svirka");
 
 const pinStruct = new mg.Schema({
     lokacija:{
-        type:String,
-        trim:true,
-        require:true
+        lat:{
+            type:Number,
+            require:true
+        },
+        lon:{
+            type:Number,
+            require:true
+        }
     },
     ocena:{
         type:String,
@@ -18,8 +23,12 @@ const pinStruct = new mg.Schema({
         type:Number,
         require:true
     },
-    BAND:band,
-    KONCERT:svirka
+    BAND:{
+        type:band
+    },
+    KONCERT:{
+        type:svirka
+    }
     //OGLAS:prodaja
 });
 
