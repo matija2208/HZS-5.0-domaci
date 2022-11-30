@@ -9,3 +9,22 @@ function loginbox(){
         return 0;
     }
 }
+
+async function Login()
+{
+
+    var username = document.getElementById("korisnickoIme_input").value;
+    var password = document.getElementById("pass_input").value;
+
+    let login = (await axios.post(LINK + '/api/user/login',{
+        
+        mail:username,
+        password:password
+    })).data;
+
+    if(login.uspesnost)
+    {
+        localStorage.setItem("key",login.id);
+        loginbox();
+    }
+}

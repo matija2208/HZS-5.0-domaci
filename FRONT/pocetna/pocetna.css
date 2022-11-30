@@ -59,13 +59,13 @@ body{
   }
 /*-----------------------------------------------Prijavi se--------------------------------------------------*/
 #loginbox{
-  width: 200px;
+  width: 220px;
   height: 150px;
   padding: 20px;
   background: linear-gradient(153deg, #575AFF 42%, rgba(56,136,255,1) 100%);
   border-radius: 25px; 
   float: right;
-  margin-top: 50px;
+  margin-top: 120px;
   display: none;
   z-index: 5;
   position: fixed;
@@ -83,6 +83,8 @@ body{
   margin-left: 150px;
 }
 .polje_unos{
+  margin-left: 10%;
+  margin-right: 10%;
   width: 80%;
   height: 25px;
   border-radius: 10px;

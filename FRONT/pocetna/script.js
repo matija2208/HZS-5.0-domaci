@@ -28,7 +28,7 @@ function main() {
 
   {
     const loader = new THREE.TextureLoader();
-    const texture = loader.load('https://r105.threejsfundamentals.org/threejs/resources/data/world/country-outlines-4k.png', render, function ( err ) {
+    const texture = loader.load('https://i.imgur.com/HNSt0AC.jpg', render, function ( err ) {
       console.error( 'An error happened.' );
     });
     /*https://r105.threejsfundamentals.org/threejs/resources/data/world/country-outlines-4k.png*/

@@ -34,7 +34,7 @@ app.delete("/api/user/", user.delOne);
 
 app.put("/api/user/", user.put);
 
-app.get("/api/user/login", user.login);
+app.post("/api/user/login", user.login);
 
 app.put("/api/user/changePassword", user.updatePassword);
 

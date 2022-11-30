@@ -1,4 +1,5 @@
 var valid_test;
+const LINK = 'http://localhost';
 
 function everything_filled(entries){
     if(entries.korisnickoIme_input.value.length == 0){
@@ -90,7 +91,7 @@ function regex_valid_repeat(entries){
 }
 
 ////
-function ValidirajRegister(){
+async function ValidirajRegister(){
     valid_test = true;
     var entries = document.getElementById("forma");
     regex_valid_ime(entries);
@@ -100,66 +101,36 @@ function ValidirajRegister(){
     regex_valid_pass(entries);
     regex_valid_repeat(entries);
     
-    // if(valid_test == true){
-    //     var users = await getData();
-    //     var t=true;
-    //     users.forEach(i => {
-    //         if(i.email===entries.mail_input.value)
-    //         {
-    //             t=false;
-    //         }
-    //     });
-    //     if(t){
-    //         await registruj(entries);
-    //         location.href="login.html";
-    //     }else{
-    //         document.getElementById("SameMailWarning").classList.remove("hidden");
-    //     }
-    // } 
-    // else
-    // {
-    //     console.log("Korisnik se ne registruje");
-    // }
+    
 
     if(valid_test != true){
         console.log("Korisnik se ne registruje")
     }else{
-        console.log("Korisnik se registruje")
+        let imeIprezime = entries.ime_input.value;
+        let username = entries.mail_input.value;
+        let password = entries.pass_input.value;
+        let mail = entries.mail_input.value;
+
+        let ispis = await axios.post(LINK+'/api/user',{
+            ime:imeIprezime,
+            prezime:"",
+            username:username,
+            password:password,
+            mail:mail
+        });
+
+
+        console.log(ispis);
+        if(ispis.data.uspesnost)
+        {
+            console.log("Korisnik se registruje");
+            let id = ispis.data.id;
+
+            localStorage.setItem("key",id);
+            location.href="../pocetna/pocetna.html"
+        }
+
+        
     }
 }
 
-async function Provera()
-{
-    var entries = document.getElementById("formaLogin");
-    var email=entries.mail.value;
-    var password=entries.lozinka.value;
-
-    var users=await getData();
-    var id="";
-    var t=false;
-
-    users.forEach(i => {
-        if(email===i.email && password===i.password)
-        {
-            id=i._id;
-            t=true;
-        }
-    });
-
-    if(t)//Ako prodje if znaci da je unet postojeci mail i password
-    {
-        //dodati pravljenje kolacica sa vrednoscu korisnikovog id-a
-        document.getElementById("LoginError").classList.add("hidden");
-        if(localStorage.getItem("id")===null)
-        {
-            localStorage.setItem("id",id);
-            console.log(localStorage.getItem("id"));
-        }
-        location.href="../Pocetna.html";
-    }
-    else
-    {
-        document.getElementById("LoginError").classList.remove("hidden"); //dodati poruku da je omasen mail ili password
-        console.log(0);
-    }
-}
