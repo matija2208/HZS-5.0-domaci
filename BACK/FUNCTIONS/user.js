@@ -6,10 +6,7 @@ async function get(req, res)
     try{
         let users = await user.find();
 
-        for(let i =0; i<users.length;i++)
-        {
-            users[i]-=password;
-        }
+        
 
         res.json({
             uspesnost:true,
@@ -28,9 +25,7 @@ async function get(req, res)
 async function getOne(req, res)
 {
     try{
-        let USER = await user.findById(enigma(req.params.id));
-
-        USER-=password;
+        let USER = await user.findById(enigma(req.body.id));
 
         res.json({
             uspesnost:true,
@@ -52,17 +47,22 @@ async function login(req,res)
         const pass = enigma(req.body.password);
         let x = false;
 
-        users.forEach(function(e){
-            if((req.body.mail===e.mail || req.body.mail === e.username) && pass ===e.password)
+        for(let i = 0; i<users.length;i++)
+        {
+            let e = users[i];
+            if((req.body.mail===e.mail || req.body.mail === e.username) && pass === e.password)
             {
+                const ID = enigma((String)(e._id))
                 x=true;
                 res.json({
-                    uspesnost:true,
-                    id:enigma(e._id)
+                    uspesnost:true,                    
+                    id:ID
                 });
-                
+                break;
             }
-        });
+        }
+
+        
 
         if(!x)
         {
@@ -82,21 +82,24 @@ async function login(req,res)
 async function post(req, res)
 {
     try{
+        const pass = enigma(req.body.password);
         const newUser = new user(
             {
                 ime:req.body.ime,
                 prezime:req.body.prezime,
                 username:req.body.username,
-                password:enigma(req.body.password),
+                password:pass,
                 mail:req.body.mail
             }
         );
 
         const savedUser = await newUser.save();
-
+        delete savedUser.password;
+        let ID = await enigma((String)(savedUser._id));
+        console.log(ID);
         res.json({
             uspesnost:true,
-            id:enigma(savedUser._id)
+            id:ID
         });
     }
     catch(err){
@@ -132,13 +135,12 @@ async function del(req, res)
 async function delOne(req, res)
 {
     try{
-        let USER = await user.findById(enigma(req.params.id));
+        let USER = await user.findById(enigma(req.body.id));
 
         const deletedUser = await USER.delete();
 
         res.json({
-            uspesnost:true,
-            user:deletedUser
+            uspesnost:true
         });
     }
     catch(err){
@@ -152,7 +154,7 @@ async function delOne(req, res)
 async function put(req, res)
 {
     try{
-        let newUser = await(user.findById(enigma(req.params.id)))
+        let newUser = await(user.findById(enigma(req.body.id)))
             
         newUser.ime=req.body.ime;
         newUser.prezime=req.body.prezime;
@@ -175,7 +177,7 @@ async function put(req, res)
 
 async function updatePassword(req,res)
 {
-    const id = enigma(req.params.id);
+    const id = enigma(req.body.id);
     const newPass = req.body.noviPassword;
     const oldPass = req.body.stariPassword;
 
@@ -185,6 +187,8 @@ async function updatePassword(req,res)
         if(oldPass === enigma(USER.password))
         {
             USER.password=enigma(newPass);
+            await USER.save();
+            
             res.json({
                 uspesnost:true
             });

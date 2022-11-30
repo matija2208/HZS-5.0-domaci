@@ -1,8 +1,4 @@
-const mg = require("mongoose");
-
 const pin = require("../TEMPLATES/pin");
-const band = require("../TEMPLATES/pinTemplates/band");
-const svirka = require("../TEMPLATES/pinTemplates/svirka");
 
 async function post(req,res)
 {
@@ -17,7 +13,7 @@ async function post(req,res)
                     lokacija:l,
                     ocena:o,
                     tip:t,
-                    BAND:new band(req.body.band)
+                    BAND:req.body.band
                 }
             )
         }
@@ -28,7 +24,7 @@ async function post(req,res)
                     lokacija:l,
                     ocena:o,
                     tip:t,
-                    KONCERT: new svirka(req.body.dogadjaj)
+                    KONCERT: req.body.dogadjaj
 
                 }
             );
@@ -146,11 +142,11 @@ async function put(req,res)
 
         if(t==0)
         {
-            PIN.BAND = new band(req.body.band);
+            PIN.BAND = req.body.band;
         }
         else if(t==1)
         {
-            PIN.KONCERT = new svirka(req.body.dogadjaj)
+            PIN.KONCERT = req.body.dogadjaj;
         }
 
         const savedPin=await PIN.save();
@@ -168,3 +164,12 @@ async function put(req,res)
         })
     }
 }
+
+module.exports = new Object({
+    "post":post,
+    "get":get,
+    "getOne":getOne,
+    "del":del,
+    "delOne":delOne,
+    "put":put
+});

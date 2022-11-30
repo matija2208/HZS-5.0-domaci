@@ -56,4 +56,4 @@ const svirkaStruct = new mg.Schema({
     }
 });
 
-module.exports = mg.model("svirka", svirkaStruct);
+module.exports = svirkaStruct;

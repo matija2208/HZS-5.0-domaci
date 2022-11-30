@@ -56,4 +56,4 @@ const bandStruct = new mg.Schema({
     }
 });
 
-module.exports = mg.model("band", bandStruct);
+module.exports = bandStruct;
