@@ -29,6 +29,11 @@ padding-top: 20px;
     color: rgb(128,29,255) ;
 }
 
+.reg-text{
+  color: rgb(128,29,255) ;
+  font-weight: bold;
+}
+
 .polje_unos{
   width: 80%;
   height: 30px;
@@ -50,9 +55,7 @@ padding-top: 20px;
   border:1.5px solid rgba(56,136,255,1);
 }
 .nazad-div{
-  text-align: left;
   padding: 30px;
-  padding-left: 10%;
   
 }
 .nazad{
@@ -63,7 +66,6 @@ padding-top: 20px;
 .nazad:hover{
   color:  rgba(56,136,255,1);
 }
-
 
 body::-webkit-scrollbar {
   width: 13px;         
@@ -88,5 +90,15 @@ body::-webkit-scrollbar-thumb {
   }
   }
   
+  .hidden{
+    display: none;
+  }
+
+  .RegexWarning{
+    color: rgb(255, 214, 29) ;
+    text-shadow: -1px -1px 0 rgb(128,29,255), 1px -1px 0 rgb(128,29,255), -1px 1px 0 rgb(128,29,255), 1px 1px 0 rgb(128,29,255);
+
+    font-weight: bold;
+  }
 
 
