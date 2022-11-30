@@ -18,31 +18,41 @@
                 <ul>
                     <li><a class="nav-link active" href="./pocetna.html">Početna</a></li>
                     <li><a class="nav-link " href="../Mapa/mapa.html">Mapa</a></li>
-                    <li><a class="nav-link" href="">Prijavi se</a></li>
+                    <li><a class="nav-link" onclick="loginbox()">Prijavi se</a></li>
                 </ul>
             </nav>
         </div>   
     </header>
+    
 <!-- ------------------------------------------------------------------------- -->
 <section class="planetic">
+    
     <div class="div-komentari">
       <div class="box-komentari">
 
       </div>
     </div>
     <div class="div-planeta">
-
+        <div id="loginbox" open="ne">
+            <input class="polje_unos"type='text' id="korisnickoIme_input" placeholder='Korisničko ime ili email:'  /><br>
+            <input class="polje_unos"type='password' id="pass_input" placeholder='Lozinka:'  /><br>
+            <input class="dugme" type='button' value="REGISTRUJ SE" id="registracija" onclick="ValidirajRegister()" /><br>
+        </div>
     </div>
+    
 </section>
 <section onama></section>
 <div class="opis-sajta"></div>
 <div class="onama">
 
 </div>
+<svg viewBox="0 -20 700 110" width="100%" height="110" preserveAspectRatio="none">
+    <path transform="translate(0, -20)" d="M0,10 c80,-22 240,0 350,18 c90,17 260,7.5 350,-20 v50 h-700" fill="#CEB964" />
+  </svg>
 <footer class="footer">
-
+    
 </footer>
 
-
+<script src="pocetna.js"></script>
 </body>
 </html>
