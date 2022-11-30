@@ -4,11 +4,6 @@
 'use strict';
 
 /* global THREE, dat */
-
-function te(){
-  console.log("1");
-}
-
 function main() {
   const canvas = document.querySelector('#c');
   const renderer = new THREE.WebGLRenderer({canvas});
@@ -91,13 +86,14 @@ function main() {
       elem.classList = "naziv";
       elem.textContent = name;
       elem.style.zIndex = 999;
-      elem.setAttribute("onclick", "te()");
+      elem.id = name;
       //elem.onclick = te;
       labelParentElem.appendChild(elem);
       countryInfo.elem = elem;
     }
     requestRenderIfNotRequested();
   }
+
   loadCountryData();
 
   const tempV = new THREE.Vector3();
@@ -211,6 +207,39 @@ function main() {
 
   controls.addEventListener('change', requestRenderIfNotRequested);
   window.addEventListener('resize', requestRenderIfNotRequested);
+
+
+  var mousestartX; var mousestartY;
+  canvas.addEventListener('mousedown', function(event){
+    mousestartX = event.offsetX; mousestartY = event.offsetY;
+  })
+
+  canvas.addEventListener('mouseup', function(event){
+    var mouseX = event.offsetX; var mouseY = event.offsetY;
+
+    if(Math.sqrt((mousestartX-mouseX)*(mousestartX-mouseX) + (mousestartY-mouseY)*(mousestartY-mouseY)) <= 5){
+      var labele = document.getElementById("labels").children;
+      var shortestDist=Infinity; var shortestDistId;
+      var totalDist;
+  
+      for (var i = 0; i < labele.length; i++){   
+        if(!(labele[i].style.display === "none")){
+          
+          var labelX = (new WebKitCSSMatrix(window.getComputedStyle(labele[i]).transform)).m41;
+          var labelY = (new WebKitCSSMatrix(window.getComputedStyle(labele[i]).transform)).m42;
+  
+          totalDist = Math.sqrt((labelX-mouseX)*(labelX-mouseX) + (labelY-mouseY)*(labelY-mouseY));
+          if(totalDist<=shortestDist && totalDist<=40){
+            shortestDist = totalDist;
+            shortestDistId = i;
+          }
+        }
+      }
+      if(shortestDist<=40){
+        alert("Closest to: " + labele[shortestDistId].id);
+      }
+    }
+  })
 
   
   // let lab = document.getElementsByClassName("naziv");
