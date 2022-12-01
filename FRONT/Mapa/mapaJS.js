@@ -1,3 +1,5 @@
+const LINK = 'http://localhost'
+
 function sendForm(){
     const queryString = window.location.search;
     document.location.href = ('objavaForma.html' + queryString);
@@ -101,6 +103,47 @@ async function initMap() {
                     
                     var pins =(await axios.get(LINK + '/api/pin')).data.pins;
                     console.log(pins);
+
+                    for(let i =0;i<pins.length;i++)
+                    {
+                        if(pins[i].tip===0)
+                        {
+                            var marker2 = new google.maps.Marker({
+                                map: map, 
+                                position: new google.maps.LatLng(pins[i].lokacija.lat, pins[i].lokacija.lon),
+                                icon: 'bendMarker.png'
+                            });
+                            const infowindow2 = new google.maps.InfoWindow({
+                                content: `<a class="objavaLink" href="../formazaispis/bend.html?${pins[i]._id}">${pins[i].BAND.ime}</a>`,
+                            });
+    
+                            marker2.addListener("click", () =>{
+                                infowindow2.open({
+                                    anchor: marker2,
+                                    map
+                                });
+                            });
+                        }
+                        else if(pins[i].tip===1)
+                        {
+                            var marker2 = new google.maps.Marker({
+                                map: map, 
+                                position: new google.maps.LatLng(pins[i].lokacija.lat, pins[i].lokacija.lon),
+                                icon: 'dogadjajMarker.png'
+                            });
+                            const infowindow2 = new google.maps.InfoWindow({
+                                content: `<a class="objavaLink" href="../formazaispis/nastup.html?${pins[i]._id}">${pins[i].KONCERT.naziv}</a>`,
+                            });
+    
+                            marker2.addListener("click", () =>{
+                                infowindow2.open({
+                                    anchor: marker2,
+                                    map
+                                });
+                            });
+                        }
+                        
+                    }
                     
 
                     function placeMarker(position, map) { //click to put marker
