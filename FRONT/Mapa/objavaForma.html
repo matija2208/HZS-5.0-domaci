@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="objava.css">
     <title>Document</title>
 
     <style>
@@ -15,57 +16,53 @@
 </head>
 <body onload="formLoad();">
 
-    <section id="bendP" class="hidden">
-        <form id="objavaForma">
-            <label for="imeBenda">Ime benda:</label>
-            <input type="text" id="imeBenda">
-            <br>
+    <div class="reg-box">
+        <div class="reg-box2"> 
+            <img src="../media/logo-violet-gray.png" width="30%" height="30%">
+            <h1 class="reg-h1">OBJAVA</h1>
+                <div class="linija"><br></div>
+                <br><br>
+            <section id="bendP" class="hidden">
+                <form id="objavaForma">
+                    <input class="polje_unos" type='text' id="imeBenda" placeholder='Ime benda:' /><br>
 
-            <label for="zanrBenda">Zanr benda:</label>
-            <input type="text" id="zanrBenda">
-            <br>
+                    <input class="polje_unos" type='text' id="zanrBenda" placeholder='Zanr benda:'  /><br>
+        
+                    <input class="polje_unos" type='text' id="clanoviBenda" placeholder='Članovi:'  /><br>
+            
+                    <textarea class="polje_unos" id="opisBenda" placeholder='Opis benda:' style="height: 70px;"></textarea><br>
+        
+                    <input class="polje_unos" type='text' id="kontaktBend" placeholder='Kontakt:'  /><br>
 
-            <label for="clanoviBenda">Neki clanovi:</label>
-            <input type="text" id="clanoviBenda">
-            <br>
+                </form>
+            </section>
 
-            <label for="opisBenda">Opis benda:</label> 
-            <textarea id="opisBenda">Opisite vas bend ovde</textarea>
-            <br>
+            <section id="dogP" class="hidden">
+                <form id="objavaForma">
+                    <input class="polje_unos" type='text'  id="imeDog" placeholder='Ime događaja:' /><br>
+        
+                    <textarea class="polje_unos" id="opisDog" placeholder='Opis događaja:' style="height: 70px;"></textarea><br>
+                    
+                    <input class="polje_unos" type="number" id="cenaDog" placeholder='Cena ulaznice u dinarima:'  /><br>
 
-            <label for="kontaktBend">Kontakt:</label> 
-            <input type="text" id="kontaktBend">
-            <br>
-        </form>
-    </section>
+                    <div class="div-biranje" style="margin-bottom:0 ;">
+                        <label for="clanoviDog">Datum i vreme događaja:</label>
+                    </div>
+                    <input class="polje_unos"  type="datetime-local" id="datetimeDog" placeholder='Vreme, datum događaja:'/><br>
+        
+                    <input class="polje_unos" type='text'  id="clanoviDog" placeholder='Izviđači:'/><br>
+        
+                    <input class="polje_unos" type='text' id="kontaktdog" placeholder='Kontakt:'  /><br> 
+                </form>
+            </section>
 
-    <section id="dogP" class="hidden">
-        <form id="objavaForma">
-            <label for="imeDog">Ime dogadjaja:</label>
-            <input type="text" id="imeDog">
-            <br>
-
-            <label for="opisDog">Opis dogadjaja:</label> 
-            <textarea id="opisDog">Opisite vas dogadjaj ovde</textarea>
-            <br>
-
-            <label for="datetimeDog">Vreme, datum dogadjaja:</label> 
-            <input type="datetime-local" id="datetimeDog">
-            <br>
-
-            <label for="clanoviDog">Neki clanovi:</label>
-            <input type="text" id="clanoviDog">
-            <br>
-
-            <label for="kontaktDog">Kontakt:</label> 
-            <input type="text" id="kontaktDog">
-            <br>
-
-            <label for="cenaDog">Cena:</label> 
-            <input type="number" id="cenaDog">
-            <br>
-        </form>
-    </section>
+            <input class="dugmeObjavi" type='button' value="OBJAVI" id="registracija" onclick="ValidirajRegister()" /><br>
+                    
+            <div class="nazad-div">
+                <a href="mapa.html"  lass="dugme1" class="nazad">NAZAD</a>
+            </div>
+        </div>
+    </div>
 
     <script src="mapaJS.js"></script>
 </body>
