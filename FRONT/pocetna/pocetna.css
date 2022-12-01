@@ -190,7 +190,7 @@ body {
   -1px  0   0 #000;
 }
 .naziv{
-  color: yellow;
+  color: white;
 }
 .naziv:hover {
   cursor: pointer;
@@ -199,7 +199,7 @@ body {
 
 /* -----------komentari----------- */
 .SveZaNaturizam:hover{
-  color:#575AFF
+  color:#a3a4f8
 }
 .uputstvo{
   padding-bottom: 2vh;

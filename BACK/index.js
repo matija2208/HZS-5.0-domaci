@@ -24,7 +24,7 @@ baza();
 
 app.get("/api/users",user.get);
 
-app.get("/api/user/", user.getOne);
+app.post("/api/user/get", user.getOne);
 
 app.post("/api/user",user.post);
 

@@ -12,7 +12,7 @@ const kontaktStruct = new mg.Schema({
         require:true
     },
     vreme:{
-        type:Date,
+        type:String,
         require:true
     }
 });
