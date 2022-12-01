@@ -3,16 +3,22 @@ body{
     overflow: overlay;
 }
 
+@font-face {
+    font-family: "music";
+    src: url("fonts/NEON\ CLUB\ MUSIC_bold.otf");
+    }
 
 /* ---------------------------------------------NAVBAR--------------------------------------------------- */
 .navbar {
     background: linear-gradient(153deg, rgba(128,29,255,1) 42%, rgba(56,136,255,1) 100%);  
     overflow: hidden;
-    width: 98%;
+    width: 97%;
     transition: all 0.5s;
     z-index: 997;
     transition: all 0.5s;
     padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
     position: fixed;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2); 
     border-bottom-left-radius: 50px ;
