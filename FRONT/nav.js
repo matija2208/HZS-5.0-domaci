@@ -40,9 +40,9 @@ async function ifLogedIn()
             document.getElementById("trebaMiId").innerHTML = "Moj Nalog";
 
             let div = `
-                <h1>${user.username}</h1>
-                <a href = "../IzmeniNalog/izmeniNalog.js">Izmeni Nalog</a>
-                <a href = "../IzmeniNalog/izmeniPassword.js">Izmeni Password</a>
+                <h1 class="logboxdata">${user.username}</h1>
+                <a class="logboxdatalink" href = "../IzmeniNalog/izmeniNalog.js">Izmeni Nalog</a><br>
+                <a class="logboxdatalink" href = "../IzmeniNalog/izmeniPassword.js">Izmeni Password</a><br><br>
                 <input class="dugme" type="button" value="ODJAVI SE" onclick="OdjaviSe()"/>
             `
             document.getElementById("loginbox").innerHTML=div;
