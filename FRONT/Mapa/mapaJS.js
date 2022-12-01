@@ -3,7 +3,7 @@ const checkbox = document.getElementById('postCheck');
 var makingPost;
 
 function dalijecekirano(){
-    if (event.currentTarget.checked) {
+    if (document.getElementById("postCheck").checked) {
         makingPost = true;
         document.getElementById("forma").classList.remove("hidden");
       } else {
@@ -271,7 +271,7 @@ async function UnesiPin()
     if(t===0)
     {
         let kontakt = new Object({
-            telefon:document.getElementById("telefonBenda").value,
+            telefon:document.getElementById("telefonBend").value,
             mail:document.getElementById("mailBenda").value
         })
         let c = document.getElementById("clanoviBenda").value.split(' ');
