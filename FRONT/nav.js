@@ -21,7 +21,36 @@ function myFunction() {
         document.getElementById("loginbox").setAttribute('open', 'ne');
     }
     }
-  }
+}
+
+async function Brisi()
+{
+    document.getElementById("loginbox").style.display="none";
+    document.getElementById("loginbox").setAttribute('open', 'ne');
+    let ID = localStorage.getItem("key");
+
+    let test = (await axios.post(LINK + '/api/user/delOne',{
+        id:ID
+    }));
+    console.log(test);
+    if(test.data.uspesnost)
+    {
+        localStorage.removeItem("key");
+        OdjaviSe();
+    }
+
+}
+
+function Pitaj()
+{
+    let div = `
+                <h1 class="logboxdata">Da li ste sigurni da zelite da obrisete svoj nalog?</h1>
+                
+                <input class="dugme" type="button" value="NE" onclick="ifLogedIn()"/>
+                <input class="dugme" style="float:right" type="button" value="DA" onclick="Brisi()"/>
+            `
+            document.getElementById("loginbox").innerHTML=div;
+}
 
 async function ifLogedIn()
 {
@@ -44,6 +73,7 @@ async function ifLogedIn()
                 <a class="logboxdatalink" href = "../IzmeniNalog/IzmeniNalog.html">Izmeni Nalog</a><br>
                 <a class="logboxdatalink" href = "../IzmeniNalog/IzmeniPassword.html">Izmeni Password</a><br><br>
                 <input class="dugme" type="button" value="ODJAVI SE" onclick="OdjaviSe()"/>
+                <input class="dugme" type="button" value="OBRISI" onclick="Pitaj()"/>
             `
             document.getElementById("loginbox").innerHTML=div;
         }

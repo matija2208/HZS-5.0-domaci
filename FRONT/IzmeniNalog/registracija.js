@@ -12,15 +12,7 @@ function everything_filled(entries){
         document.getElementById("EmptyMailWarning").classList.remove("hidden");
     } else document.getElementById("EmptyMailWarning").classList.add("hidden");
 
-    if(entries.pass_input.value.length == 0){
-        valid_test = false;
-        document.getElementById("EmptyPassWarning").classList.remove("hidden");
-    } else document.getElementById("EmptyPassWarning").classList.add("hidden");
-
-    if(entries.pass_repeat.value.length == 0){
-        valid_test = false;
-        document.getElementById("EmptyRepeatWarning").classList.remove("hidden");
-    } else document.getElementById("EmptyRepeatWarning").classList.add("hidden");
+    
 }
 
 function regex_valid_name(entries){
@@ -64,6 +56,20 @@ function regex_valid_mail(entries){
     }
 }
 
+function regex_valid_pass_OLD(entries){
+    var pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    var tekst = entries.pass_input_OLD.value;
+    var test = tekst.match(pattern);
+ 
+    if (test == null) {
+         document.getElementById("ErrorPassWarning").classList.remove("hidden");
+         valid_test = false;
+     } else{
+       console.log("validirana lozinka korisnika...");
+       document.getElementById("ErrorPassWarning").classList.add("hidden");
+     }
+ }
+
 function regex_valid_pass(entries){
    var pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
    var tekst = entries.pass_input.value;
@@ -98,8 +104,8 @@ async function ValidirajRegister(){
     everything_filled(entries);
     regex_valid_name(entries);
     regex_valid_mail(entries)
-    regex_valid_pass(entries);
-    regex_valid_repeat(entries);
+    // regex_valid_pass(entries);
+    // regex_valid_repeat(entries);
     
     
 
@@ -107,15 +113,14 @@ async function ValidirajRegister(){
         console.log("Korisnik se ne registruje")
     }else{
         let imeIprezime = entries.ime_input.value;
-        let username = entries.mail_input.value;
-        let password = entries.pass_input.value;
+        let username = entries.korisnickoIme_input.value;
         let mail = entries.mail_input.value;
 
-        let ispis = await axios.post(LINK+'/api/user',{
+        let ispis = await axios.put(LINK+'/api/user',{
+            id:localStorage.getItem("key"),
             ime:imeIprezime,
             prezime:"",
             username:username,
-            password:password,
             mail:mail
         });
 
@@ -124,9 +129,7 @@ async function ValidirajRegister(){
         if(ispis.data.uspesnost)
         {
             console.log("Korisnik se registruje");
-            let id = ispis.data.id;
-
-            localStorage.setItem("key",id);
+           
             location.href="../pocetna/pocetna.html"
         }
 
@@ -134,3 +137,68 @@ async function ValidirajRegister(){
     }
 }
 
+function everything_filled1(entries){
+
+    if(entries.pass_input_OLD.value.length == 0){
+        valid_test = false;
+        document.getElementById("EmptyMailWarning").classList.remove("hidden");
+    } else document.getElementById("ErrorOldPassWarning").classList.add("hidden");
+
+    if(entries.pass_input.value.length == 0){
+        valid_test = false;
+        document.getElementById("EmptyOldPassWarning").classList.remove("hidden");
+    } else document.getElementById("EmptyPassWarning").classList.add("hidden");
+
+    if(entries.pass_repeat.value.length == 0){
+        valid_test = false;
+        document.getElementById("EmptyRepeatWarning").classList.remove("hidden");
+    } else document.getElementById("EmptyRepeatWarning").classList.add("hidden");
+}
+
+async function ValidirajRegister1(){
+    valid_test = true;
+    var entries = document.getElementById("forma");
+    everything_filled1(entries);
+    regex_valid_pass_OLD(entries);
+    regex_valid_pass(entries);
+    regex_valid_repeat(entries);
+    
+    
+
+    if(valid_test != true){
+        console.log("Korisnik se ne registruje")
+    }else{
+        let oldPass = entries.pass_input_OLD.value;
+        let password = entries.pass_input.value;
+
+        let ispis = await axios.put(LINK+'/api/user/changePassword',{
+            id:localStorage.getItem("key"),
+            noviPassword:password,
+            stariPassword:oldPass
+        });
+
+
+        console.log(ispis);
+        if(ispis.data.uspesnost)
+        {
+            location.href="../pocetna/pocetna.html"
+        }
+
+        
+    }
+}
+
+
+async function popuni()
+{
+    id = localStorage.getItem("key");
+
+    let user = (await axios.post(LINK+'/api/user/get',{
+        id:id,
+    })).data.user;
+    
+
+    document.getElementById("ime_input").value=user.ime;
+    document.getElementById("korisnickoIme_input").value=user.username;
+    document.getElementById("mail_input").value=user.mail;
+}

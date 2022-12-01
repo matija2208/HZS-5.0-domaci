@@ -30,7 +30,7 @@ app.post("/api/user",user.post);
 
 app.delete("/api/users",user.del);
 
-app.delete("/api/user/", user.delOne);
+app.post("/api/user/delOne", user.delOne);
 
 app.put("/api/user/", user.put);
 

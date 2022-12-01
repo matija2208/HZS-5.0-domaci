@@ -107,7 +107,7 @@ async function ValidirajRegister(){
         console.log("Korisnik se ne registruje")
     }else{
         let imeIprezime = entries.ime_input.value;
-        let username = entries.mail_input.value;
+        let username = entries.korisnickoIme_input.value;
         let password = entries.pass_input.value;
         let mail = entries.mail_input.value;
 
