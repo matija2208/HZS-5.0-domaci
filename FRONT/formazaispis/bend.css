@@ -114,6 +114,19 @@ body::-webkit-scrollbar {
     border: 5px solid transparent; 
     border-right: 6px solid transparent; 
   } 
+
+  .nazad-div{
+    padding: 30px;
+    
+  }
+  .nazad{
+    text-decoration: none;
+    color: rgba(128,29,255,1);
+    font-size: 20px;
+  }
+  .nazad:hover{
+    color:  rgba(56,136,255,1);
+  }
   /* ------------------------------------------------------------------------- */
   @media(max-width:900px){
     .slika{
