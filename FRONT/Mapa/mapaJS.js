@@ -1,16 +1,16 @@
-const LINK = 'http://localhost'
+const LINK = 'http://localhost';
 const checkbox = document.getElementById('postCheck');
 var makingPost;
 
-checkbox.addEventListener('change', (event) => {
+function dalijecekirano(){
     if (event.currentTarget.checked) {
-      makingPost = true;
-      document.getElementById("forma").classList.remove("hidden");
-    } else {
-      makingPost = false;
-      document.getElementById("forma").classList.add("hidden");
+        makingPost = true;
+        document.getElementById("forma").classList.remove("hidden");
+      } else {
+        makingPost = false;
+        document.getElementById("forma").classList.add("hidden");
     }
-  })
+}
 
 
 var SLIKA; 
@@ -239,6 +239,10 @@ async function initMap() {
                 }
 }
 
+
+
+window.initMap = initMap;
+
 function provera()
 {
     
@@ -250,9 +254,6 @@ function provera()
 }
 
 provera();
-
-window.initMap = initMap;
-
 
 async function UnesiPin()
 {
