@@ -11,11 +11,11 @@
        
        <div class="forma">
             <div class="forma2">
-                <div class="naziv"><div class="linija"></div><h1>IME BENDA</h1>
+                <div class="naziv"><div class="linija"></div><h1 id="imeBenda">IME BENDA</h1>
                 <div class="linija"></div></div>
                 <div class="opis-benda">
                     <label class="opis-text">OPIS BENDA:</label>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium dicta ipsam, eaque cum, quidem enim vel consequuntur minus libero repellat totam. Et iste omnis, tempore quasi ab laudantium praesentium dignissimos!
+                    <p id="opisBenda">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium dicta ipsam, eaque cum, quidem enim vel consequuntur minus libero repellat totam. Et iste omnis, tempore quasi ab laudantium praesentium dignissimos!
                     Voluptates perferendis quaerat tempora culpa mollitia ipsum voluptatem sequi minus minima reiciendis inventore molestiae placeat fuga alias iste quam asperiores, eveniet nulla nostrum quidem quos praesentium iusto totam laborum. Libero.
                     Eaque tempora ratione adipisci animi voluptatem dolorum possimus quas voluptatibus corrupti. Delectus, ullam a at accusamus, minus corporis provident iure maiores velit ducimus officiis neque excepturi! Provident assumenda labore numquam.
                     Impedit eaque in minus officia temporibus cupiditate, perferendis iste ducimus vitae placeat eum accusantium amet labore nisi magnam ipsa doloremque animi pariatur, reprehenderit est nihil consectetur illum sint dolor. Minus.
@@ -23,25 +23,27 @@
                     </p>
                     
                    <label class="opis-text">ŽANR:</label>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium dicta ipsam, eaque cum,
+                    <p id="zanrBenda">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium dicta ipsam, eaque cum,
                      quidem enim vel consequuntur minus libero repellat totam. Et iste omnis, tempore quasi ab 
                      laudantium praesentium dignissimos!
                     </p>
                     <label class="opis-text">ČLANOVI:</label>
-                    <p class="clanovi" >Dusan Lazic, Matija Cetrovic, Luka Mihajlovic, Milica Zdravkovic
+                    <p class="clanovi" id="clanovi">Dusan Lazic, Matija Cetrovic, Luka Mihajlovic, Milica Zdravkovic
                     </p>
                     <div class="kontakti">
                         <label>KONTAKT:</label>
-                        <p>tel: 060 8023097</p>
-                        <p>email: haahhahh@gmail.com</p>
+                        <p id="telefon">060 8023097</p>
+                        <p id="mail">haahhahh@gmail.com</p>
                     </div>
                </div>
              
             </div>   
 
        </div>
-       <div class="slika">
+       <div class="slika" id="slika">
             <img src="../media/logo-violet-gray.png" width="100%">
        </div>
+       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+       <script src = "bend.js"></script>
 </body>
 </html>
