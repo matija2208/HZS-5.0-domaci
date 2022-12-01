@@ -13,7 +13,7 @@ checkbox.addEventListener('change', (event) => {
   })
 
 
-var link; 
+var SLIKA; 
 
 function reportInfo(vars, showType = false) {
     if (showType === true); //console.log(typeof vars);
@@ -39,7 +39,7 @@ var feedback = function(res) {
             'Image : ' + '<br><input class="image-url" value=\"' + get_link + '\"/>' 
              + '<img class="img" alt="Imgur-Upload" src=\"' + get_link + '\"/>';
         addImg('.status', content);
-        link = get_link;
+        SLIKA = get_link;
     }
 };
 
@@ -55,7 +55,6 @@ function sendForm(){
     }
     
 }
-
 function formLoad(){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -238,6 +237,91 @@ async function initMap() {
 
                         
                 }
-        }
+}
 
-        window.initMap = initMap;
+function provera()
+{
+    
+    console.log(localStorage.getItem("key"));
+    if(localStorage.getItem("key")===null)
+    {
+        document.getElementById("sakrijGaBezTokena").style.display="none";
+    }
+}
+
+provera();
+
+window.initMap = initMap;
+
+
+async function UnesiPin()
+{
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let t=(urlParams.get('type')==='event')?1:0;
+
+    let slika = SLIKA;
+
+    
+    let lon=urlParams.get('markerLng');
+    let lat=urlParams.get('markerLat');
+    let lokacija={lat:lat,lon:lon};
+    
+    if(t===0)
+    {
+        let kontakt = new Object({
+            telefon:document.getElementById("telefonBenda").value,
+            mail:document.getElementById("mailBenda").value
+        })
+        let c = document.getElementById("clanoviBenda").value.split(' ');
+        let bend = new Object({
+            ime:document.getElementById("imeBenda").value,
+            zanr:document.getElementById("zanrBenda").value,
+            opis:document.getElementById("opisBenda").value,
+            kontakt:kontakt,
+            slika:slika,
+            korisnik:localStorage.getItem("key"),
+            clanovi:c
+        });
+
+        let test = (await axios.post(LINK+"/api/pin",{
+            lokacija:lokacija,
+            tip:t,
+            band:bend
+        })).data.uspesnost;
+
+        if(test)
+        {
+            location.href="mapaNav.html";
+        }
+    }
+    else if(t===1)
+    {
+        let kontakt = new Object({
+            telefon:document.getElementById("telefon").value,
+            mail:document.getElementById("mail").value,
+            vreme:document.getElementById("datetimeDog").value
+        })
+        let b = document.getElementById("clanoviDog").value.split(' ');
+        let koncert = new Object({
+            naziv:document.getElementById("imeDog").value,
+            cena:document.getElementById("cenaDog").value,
+            opis:document.getElementById("opisDog").value,
+            kontakt:kontakt,
+            slika:slika,
+            korisnik:localStorage.getItem("key"),
+            bendovi:b
+        });
+
+        let test = (await axios.post(LINK+"/api/pin",{
+            lokacija:lokacija,
+            tip:t,
+            dogadjaj:koncert
+        })).data.uspesnost;
+
+        if(test)
+        {
+            location.href="mapaNav.html";
+        }
+    }
+}
