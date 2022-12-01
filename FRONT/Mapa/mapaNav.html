@@ -38,13 +38,14 @@
          </div>
     </div>
 
-            <form id="forma">
+            <span class="reg-h1"> Da li želite da napravite objavu?</span>
+            <input type="checkbox" id="postCheck" class="option-input">
+            <form id="forma" class="hidden">
                 <!-- <input type="radio" id="bandRadio" name="pinModeType">
                 <label for="bandRadio">Bend</label>
 
                 <input type="radio" id="eventRadio" name="pinModeType">
                 <label for="eventRadio">Dogadjaj</label> -->
-
                 <label>
                     <input type="radio" class="option-input radio" id="bandRadio" name="pinModeType" />Bend
                   </label>
@@ -53,7 +54,7 @@
                   </label>
 
                  <input type="button" value="Dalje" id="submitButon" onclick="sendForm()">
-            </form>
+            </form> <br><br><br>
      
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCThnoRS0Gt0UvbzjUWfPg-rR374Y5DwfU&callback=initMap&libraries=&v=weekly" defer></script>

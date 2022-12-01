@@ -1,6 +1,19 @@
 const LINK = 'http://localhost'
+const checkbox = document.getElementById('postCheck');
+var makingPost;
 
-var link;
+checkbox.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+      makingPost = true;
+      document.getElementById("forma").classList.remove("hidden");
+    } else {
+      makingPost = false;
+      document.getElementById("forma").classList.add("hidden");
+    }
+  })
+
+
+var link; 
 
 function reportInfo(vars, showType = false) {
     if (showType === true); //console.log(typeof vars);
@@ -36,8 +49,11 @@ new Imgur({
 });
 
 function sendForm(){
-    const queryString = window.location.search;
-    document.location.href = ('objavaForma.html' + queryString);
+    if(new URLSearchParams(window.location.search).get('markerLat') != null){
+        const queryString = window.location.search;
+        document.location.href = ('objavaForma.html' + queryString);
+    }
+    
 }
 
 function formLoad(){
@@ -182,41 +198,45 @@ async function initMap() {
                     
 
                     function placeMarker(position, map) { //click to put marker
-                        if (marker) { //if marker exists, set the position and icon        
-                            switch(document.querySelector('input[name="pinModeType"]:checked').id){
-                                case 'bandRadio':
-                                    marker.setIcon('bendMarker.png');
-                                    formType = ('band');
-                                break;
-                                case 'eventRadio':
-                                    marker.setIcon('dogadjajMarker.png');
-                                    formType = ('event');
-                                break;
-                                default:
-                                    marker.setIcon('bendMarker.png');
-                                break;
-                            }
-                            marker.setPosition(position);
-                        } else { //if marker doesnt exist, make one with the appropriate data
-                            switch(document.querySelector('input[name="pinModeType"]:checked').id){
-                                case 'bandRadio':
-                                    marker = ({
-                                    position: position,
-                                    map: map,
-                                    icon: 'bendMarker.png'
-                                    });
-                                break;
+                        if(makingPost){
+                            if (marker) { //if marker exists, set the position and icon        
+                                switch(document.querySelector('input[name="pinModeType"]:checked').id){
+                                    case 'bandRadio':
+                                        marker.setIcon('bendMarker.png');
+                                        formType = ('band');
+                                    break;
+                                    case 'eventRadio':
+                                        marker.setIcon('dogadjajMarker.png');
+                                        formType = ('event');
+                                    break;
+                                    default:
+                                        marker.setIcon('bendMarker.png');
+                                    break;
+                                }
+                                marker.setPosition(position);
+                            } else { //if marker doesnt exist, make one with the appropriate data
+                                switch(document.querySelector('input[name="pinModeType"]:checked').id){
+                                    case 'bandRadio':
+                                        marker = ({
+                                        position: position,
+                                        map: map,
+                                        icon: 'bendMarker.png'
+                                        });
+                                    break;
+    
+                                    case 'eventRadio':
+                                        marker = ({
+                                        position: position,
+                                        map: map,
+                                        icon: 'dogadjajMarker.png'
+                                        });
+                                    break;
+                            }      
+                        }
+                        window.history.replaceState(null, null, "?markerLat=" + marker.getPosition().lat() + "&markerLng=" + marker.getPosition().lng() + "&type=" + formType); 
+                        }
 
-                                case 'eventRadio':
-                                    marker = ({
-                                    position: position,
-                                    map: map,
-                                    icon: 'dogadjajMarker.png'
-                                    });
-                                break;
-                        }      
-                    }
-                    window.history.replaceState(null, null, "?markerLat=" + marker.getPosition().lat() + "&markerLng=" + marker.getPosition().lng() + "&type=" + formType);
+                        
                 }
         }
 
