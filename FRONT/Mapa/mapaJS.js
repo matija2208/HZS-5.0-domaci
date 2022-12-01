@@ -35,7 +35,7 @@ function formLoad(){
     console.log('marker at ' + markerLat + 'lat, ' + markerLng + 'lng');
 }
 
-function initMap() {
+async function initMap() {
     var formType;
             const srbija = { lat: 44.0165, lng: 21.0059 };
                     const map = new google.maps.Map(
@@ -83,28 +83,25 @@ function initMap() {
                         map: map
                     });
 
-                    var marker2 = new google.maps.Marker({
-                        map: map, 
-                        position: new google.maps.LatLng(20, 40),
-                        icon: 'bendMarker.png'
-                    });
-                    const infowindow2 = new google.maps.InfoWindow({
-                        content: `<a href="lokacija.html">TESTIRANJE</a>`,
-                    });
+                    // var marker2 = new google.maps.Marker({
+                    //     map: map, 
+                    //     position: new google.maps.LatLng(20, 40),
+                    //     icon: 'bendMarker.png'
+                    // });
+                    // const infowindow2 = new google.maps.InfoWindow({
+                    //     content: `<a href="lokacija.html">TESTIRANJE</a>`,
+                    // });
 
-                    marker2.addListener("click", () =>{
-                        infowindow2.open({
-                            anchor: marker2,
-                            map
-                        });
-                    });
+                    // marker2.addListener("click", () =>{
+                    //     infowindow2.open({
+                    //         anchor: marker2,
+                    //         map
+                    //     });
+                    // });
                     
-
-                    var marker3 = new google.maps.Marker({
-                        map: map, 
-                        position: new google.maps.LatLng(10, 5),
-                        icon: 'dogadjajMarker.png'
-                    });
+                    var pins =(await axios.get(LINK + '/api/pin')).data.pins;
+                    console.log(pins);
+                    
 
                     function placeMarker(position, map) { //click to put marker
                         if (marker) { //if marker exists, set the position and icon        
