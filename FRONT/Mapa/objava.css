@@ -1,8 +1,9 @@
 body{
-    background: rgb(128,29,255);
-    background: linear-gradient(153deg, rgba(128,29,255,1) 42%, rgba(56,136,255,1) 100%);
-    color: black;
-    overflow: overlay;
+  background: rgb(128,29,255);
+background: linear-gradient(153deg, rgba(128,29,255,1) 42%, rgba(56,136,255,1) 100%);
+color: white;
+overflow: overlay;
+
     }
 
      /* -------------------------------------skrol---------------------------------------------------   */
@@ -22,6 +23,8 @@ body{
         border: 5px solid transparent; 
         border-right: 6px solid transparent; 
       } 
+
+    /* ------------------------------------------------------------ */
       .reg-box{
         border: 12px dashed white;
         border-radius: 50px;
