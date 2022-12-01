@@ -41,8 +41,8 @@ async function ifLogedIn()
 
             let div = `
                 <h1 class="logboxdata">${user.username}</h1>
-                <a class="logboxdatalink" href = "../IzmeniNalog/izmeniNalog.js">Izmeni Nalog</a><br>
-                <a class="logboxdatalink" href = "../IzmeniNalog/izmeniPassword.js">Izmeni Password</a><br><br>
+                <a class="logboxdatalink" href = "../IzmeniNalog/IzmeniNalog.html">Izmeni Nalog</a><br>
+                <a class="logboxdatalink" href = "../IzmeniNalog/IzmeniPassword.html">Izmeni Password</a><br><br>
                 <input class="dugme" type="button" value="ODJAVI SE" onclick="OdjaviSe()"/>
             `
             document.getElementById("loginbox").innerHTML=div;
