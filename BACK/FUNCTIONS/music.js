@@ -5,7 +5,7 @@ async function getSong(req,res){
     var file = req.params.name;
     try{
         
-        await res.sendFile("C:\\Users\\lazic\\Desktop\\Dule\\Škola\\III\\Programiranje\\Takmičenja\\HZS\\Domaci\\HZS\\HZS-5.0-domaci\\BACK\\MUSIC\\"+String(file));
+        await res.sendFile(path.resolve(String(file)));
     }
     catch(err)
     {
