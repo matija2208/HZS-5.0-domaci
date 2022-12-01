@@ -6,7 +6,6 @@ function loginbox(){
     else{
         document.getElementById("loginbox").style.display="block";
         document.getElementById("loginbox").setAttribute('open', 'da');
-        return 0;
     }
 }
 
@@ -28,3 +27,11 @@ async function Login()
         loginbox();
     }
 }
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "navbar") {
+      x.className += " responsive";
+    } else {
+      x.className = "navbar";
+    }
+  }
