@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="objava.css">
+    <link rel="stylesheet" href="style-imgur.css">
     <title>Document</title>
 
     <style>
@@ -55,7 +56,11 @@
                     <input class="polje_unos" type='text' id="kontaktdog" placeholder='Kontakt:'  /><br> 
                 </form>
             </section>
-
+            <label for="">Unesite sliku: </label>
+            <div class="dropzone">
+                <div class="info"></div>
+              </div>
+              <br>
             <input class="dugmeObjavi" type='button' value="OBJAVI" id="registracija" onclick="ValidirajRegister()" /><br>
                     
             <div class="nazad-div">
@@ -63,7 +68,7 @@
             </div>
         </div>
     </div>
-
+    <script src="imgur.js"></script>
     <script src="mapaJS.js"></script>
 </body>
 </html>
