@@ -108,7 +108,7 @@ async function initMap() {
                     {
                         if(pins[i].tip===0)
                         {
-                            var marker2 = new google.maps.Marker({
+                            let marker2 = new google.maps.Marker({
                                 map: map, 
                                 position: new google.maps.LatLng(pins[i].lokacija.lat, pins[i].lokacija.lon),
                                 icon: 'bendMarker.png'
@@ -126,7 +126,7 @@ async function initMap() {
                         }
                         else if(pins[i].tip===1)
                         {
-                            var marker2 = new google.maps.Marker({
+                            let marker2 = new google.maps.Marker({
                                 map: map, 
                                 position: new google.maps.LatLng(pins[i].lokacija.lat, pins[i].lokacija.lon),
                                 icon: 'dogadjajMarker.png'
